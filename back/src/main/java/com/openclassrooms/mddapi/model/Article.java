@@ -19,6 +19,7 @@ public class Article {
     private String auteur;
     private Date datePublication;
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "article_id")
     private List<Commentaire> commentaires;
 }

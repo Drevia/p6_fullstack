@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class ApplicationController {
+public class ArticlesController {
 
     public ResponseEntity<?> getAllArticles() {
         // Logique pour récupérer tous les articles
@@ -21,20 +21,5 @@ public class ApplicationController {
     public ResponseEntity<?> createArticle() {
         // Logique pour créer un nouvel article
         return ResponseEntity.ok("Article créé");
-    }
-
-    public ResponseEntity<?> getComments() {
-        // Logique pour récupérer les commentaires d'un article
-        return ResponseEntity.ok("Liste des commentaires de l'article");
-    }
-
-    public ResponseEntity<?> addComment() {
-        // Logique pour ajouter un commentaire à un article
-        return ResponseEntity.ok("Commentaire ajouté");
-    }
-
-    public ResponseEntity<?> getAllThemes() {
-        // Logique pour récupérer tous les thèmes
-        return ResponseEntity.ok("Liste de tous les thèmes");
     }
 }
