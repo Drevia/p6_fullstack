@@ -1,0 +1,155 @@
+$primary: #7C5CBF;
+$white: #ffffff;
+$border: #ddd;
+$text: #333;
+$bg-comment: #f5f5f5;
+
+.article-detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $white;
+}
+
+.article-detail-content {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.article-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+
+  .back-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: $text;
+    padding: 0;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    color: $text;
+  }
+}
+
+.article-meta {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+  padding-left: 0.25rem;
+}
+
+.article-content {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: $text;
+  margin-bottom: 2rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $border;
+  margin-bottom: 1.5rem;
+}
+
+.comments-section {
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: $text;
+  }
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.comment {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  .comment-author {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text;
+    min-width: 80px;
+  }
+
+  .comment-content {
+    background: $bg-comment;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    color: $text;
+    flex: 1;
+    line-height: 1.5;
+  }
+}
+
+.no-comments {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.comment-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  border: 1.5px solid $border;
+  border-radius: 10px;
+  padding: 0.75rem;
+
+  textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: none;
+    color: $text;
+    background: transparent;
+
+    &::placeholder {
+      color: #bbb;
+    }
+  }
+
+  .send-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $primary;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    &:hover:not(:disabled) {
+      color: darken($primary, 10%);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}

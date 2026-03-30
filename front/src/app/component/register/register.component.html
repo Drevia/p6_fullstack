@@ -1,0 +1,40 @@
+<div class="register-wrapper">
+ 
+  <header class="header">
+    <img src="../../../assets/logo_p6.png" alt="MDD Logo" class="logo" />
+  </header>
+ 
+  <main class="register-content">
+    <button class="back-btn" (click)="goBack()">&#8592;</button>
+ 
+    <h1 class="title">Inscription</h1>
+ 
+    <form [formGroup]="form" (ngSubmit)="submit()" class="register-form">
+ 
+      <div class="field">
+        <label for="username">Nom d'utilisateur</label>
+        <input id="username" type="text" formControlName="username" />
+      </div>
+ 
+      <div class="field">
+        <label for="email">Adresse e-mail</label>
+        <input id="email" type="email" formControlName="email" />
+      </div>
+ 
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" formControlName="password" />
+      </div>
+ 
+      @if (onError) {
+        <p class="error">Une erreur est survenue, veuillez réessayer.</p>
+      }
+ 
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">
+        S'inscrire
+      </button>
+ 
+    </form>
+  </main>
+ 
+</div>

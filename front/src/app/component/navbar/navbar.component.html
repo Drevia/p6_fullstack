@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <img src="../../../assets/logo_p6.png" alt="MDD Logo" class="logo" routerLink="/articles" />
+
+  <div class="nav-links">
+    <span class="logout" (click)="logout()">Se déconnecter</span>
+    <a routerLink="/articles" routerLinkActive="active">Articles</a>
+    <a routerLink="/themes" routerLinkActive="active">Thèmes</a>
+    <span class="profile-icon" routerLink="/me">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </span>
+  </div>
+</nav>

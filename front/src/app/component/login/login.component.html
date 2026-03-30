@@ -1,0 +1,35 @@
+<div class="login-wrapper">
+ 
+  <header class="header">
+    <img src="../../../assets/logo_p6.png" alt="MDD Logo" class="logo" />
+  </header>
+ 
+  <main class="login-content">
+    <button class="back-btn" (click)="goBack()">&#8592;</button>
+ 
+    <h1 class="title">Se connecter</h1>
+ 
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
+ 
+      <div class="field">
+        <label for="email">E-mail ou nom d'utilisateur</label>
+        <input id="email" type="text" formControlName="email" />
+      </div>
+ 
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" formControlName="password" />
+      </div>
+ 
+      @if (onError) {
+        <p class="error">Identifiants incorrects, veuillez réessayer.</p>
+      }
+ 
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">
+        Se connecter
+      </button>
+ 
+    </form>
+  </main>
+ 
+</div>

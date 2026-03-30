@@ -1,0 +1,47 @@
+<div class="me-wrapper">
+  <app-navbar />
+
+  <main class="me-content">
+    <h1 class="title">Profil utilisateur</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="me-form">
+
+      <input type="text" formControlName="username" placeholder="Username" />
+      <input type="email" formControlName="email" placeholder="email@email.fr" />
+      <input type="password" formControlName="password" placeholder="Mot de passe" />
+
+      @if (onError) {
+        <p class="error">Une erreur est survenue, veuillez réessayer.</p>
+      }
+
+      @if (onSuccess) {
+        <p class="success">Profil mis à jour avec succès.</p>
+      }
+
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">
+        Sauvegarder
+      </button>
+
+    </form>
+
+    <hr />
+
+    <section class="abonnements-section">
+      <h2>Abonnements</h2>
+
+      <div class="abonnements-grid">
+        @for (theme of abonnements; track theme.id) {
+          <div class="theme-card">
+            <h3 class="theme-title">{{ theme.titre }}</h3>
+            <p class="theme-description">{{ theme.description }}</p>
+            <button class="btn-unsubscribe" (click)="unsubscribe(theme.id)">
+              Se désabonner
+            </button>
+          </div>
+        } @empty {
+          <p class="no-abonnements">Vous n'êtes abonné à aucun thème.</p>
+        }
+      </div>
+    </section>
+  </main>
+</div>

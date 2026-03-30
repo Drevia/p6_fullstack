@@ -1,0 +1,30 @@
+<div class="create-article-wrapper">
+  <app-navbar />
+
+  <main class="create-article-content">
+    <button class="back-btn" (click)="goBack()">&#8592;</button>
+
+    <h1 class="title">Créer un nouvel article</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="create-article-form">
+
+      <select formControlName="themeTitre">
+        <option value="" disabled selected>Sélectionner un thème</option>
+        @for (theme of themes; track theme.id) {
+          <option [value]="theme.titre">{{ theme.titre }}</option>
+        }
+      </select>
+
+      <input type="text" formControlName="titre" placeholder="Titre de l'article" />
+
+      <textarea formControlName="contenu" placeholder="Contenu de l'article" rows="6"></textarea>
+
+      <p class="error" *ngIf="onError">Une erreur est survenue, veuillez réessayer.</p>
+
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">
+        Créer
+      </button>
+
+    </form>
+  </main>
+</div>

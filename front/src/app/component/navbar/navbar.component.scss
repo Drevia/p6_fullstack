@@ -1,0 +1,60 @@
+$primary: #7C5CBF;
+$border: #ccc;
+$text: #333;
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid $border;
+  background: #fff;
+
+  .logo {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .logout {
+      color: $primary;
+      font-size: 0.95rem;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $text;
+      font-size: 1rem;
+
+      &.active {
+        font-weight: 600;
+        color: $primary;
+      }
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    .profile-icon {
+      color: $text;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+$primary: #7C5CBF;
+$white: #ffffff;
+$border: #ccc;
+$text: #333;
+
+.create-article-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $white;
+}
+
+.create-article-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.back-btn {
+  position: absolute;
+  left: 1.5rem;
+  top: 2rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: $text;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: $text;
+}
+
+.create-article-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 320px;
+
+  select,
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1.5px solid $primary;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    color: $text;
+    background: $white;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: darken($primary, 10%);
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  select {
+    color: #aaa;
+
+    option {
+      color: $text;
+    }
+
+    option[value=""][disabled] {
+      color: #aaa;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
+}
+
+.btn-submit {
+  margin-top: 0.5rem;
+  padding: 0.65rem 2.5rem;
+  background: $primary;
+  color: $white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: darken($primary, 10%);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

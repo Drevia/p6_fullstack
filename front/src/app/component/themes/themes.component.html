@@ -1,0 +1,26 @@
+<div class="themes-wrapper">
+  <app-navbar />
+ 
+  <main class="themes-content">
+    <div class="themes-grid">
+      @for (theme of themes; track theme.id) {
+        <div class="theme-card">
+          <h2 class="theme-title">{{ theme.titre }}</h2>
+          <p class="theme-description">{{ theme.description }}</p>
+ 
+          @if (isSubscribed(theme.id)) {
+            <button class="btn-subscribed" (click)="unsubscribe(theme.id)">
+              Déjà abonné
+            </button>
+          } @else {
+            <button class="btn-subscribe" (click)="subscribe(theme.id)">
+              S'abonner
+            </button>
+          }
+        </div>
+      } @empty {
+        <p class="no-themes">Aucun thème disponible.</p>
+      }
+    </div>
+  </main>
+</div>

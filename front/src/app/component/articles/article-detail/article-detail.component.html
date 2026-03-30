@@ -1,0 +1,51 @@
+<div class="article-detail-wrapper">
+  <app-navbar />
+
+  @if (article) {
+    <main class="article-detail-content">
+      <div class="article-header">
+        <button class="back-btn" (click)="goBack()">&#8592;</button>
+        <h1 class="title">{{ article.titre }}</h1>
+      </div>
+
+      <div class="article-meta">
+        <span>{{ article.datePublication | date:'dd/MM/yyyy' }}</span>
+        <span>{{ article.auteur }}</span>
+        <span>{{ article.theme?.titre }}</span>
+      </div>
+
+      <p class="article-content">{{ article.contenu }}</p>
+
+      <hr />
+
+      <section class="comments-section">
+        <h2>Commentaires</h2>
+
+        <div class="comments-list">
+          @for (commentaire of article.commentaires; track $index) {
+            <div class="comment">
+              <span class="comment-author">{{ commentaire.auteur }}</span>
+              <div class="comment-content">{{ commentaire.contenu }}</div>
+            </div>
+          } @empty {
+            <p class="no-comments">Aucun commentaire pour l'instant.</p>
+          }
+        </div>
+
+        <div class="comment-input-wrapper">
+          <textarea
+            [(ngModel)]="newComment"
+            placeholder="Écrivez ici votre commentaire"
+            rows="3">
+          </textarea>
+          <button class="send-btn" (click)="sendComment()" [disabled]="!newComment.trim()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </section>
+    </main>
+  }
+</div>
