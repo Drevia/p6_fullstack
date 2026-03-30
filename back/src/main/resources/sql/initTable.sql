@@ -6,6 +6,15 @@ DROP TABLE IF EXISTS utilisateurs;
 DROP TABLE IF EXISTS themes;
 
 -- ============================
+-- TABLE THEMES
+-- ============================
+CREATE TABLE themes (
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        titre VARCHAR(255) NOT NULL,
+                        description TEXT
+);
+
+-- ============================
 -- TABLE ARTICLES
 -- ============================
 CREATE TABLE articles (
@@ -13,7 +22,12 @@ CREATE TABLE articles (
                           titre VARCHAR(255) NOT NULL,
                           contenu TEXT NOT NULL,
                           auteur VARCHAR(255) NOT NULL,
-                          date_publication DATETIME
+                          date_publication DATETIME,
+                          theme_id BIGINT,
+                          CONSTRAINT fk_article_theme
+                              FOREIGN KEY (theme_id)
+                                  REFERENCES themes(id)
+                                  ON DELETE SET NULL
 );
 
 -- ============================
@@ -29,15 +43,6 @@ CREATE TABLE commentaires (
                                   FOREIGN KEY (article_id)
                                       REFERENCES articles(id)
                                       ON DELETE CASCADE
-);
-
--- ============================
--- TABLE THEMES
--- ============================
-CREATE TABLE themes (
-                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                        titre VARCHAR(255) NOT NULL,
-                        description TEXT
 );
 
 -- ============================

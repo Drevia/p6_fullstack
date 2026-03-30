@@ -35,7 +35,7 @@ public class Utilisateur {
 
     @ManyToMany
     @JoinTable(
-        name = "utilisateur_abonnements",
+        name = "utilisateur_themes",
         joinColumns = @JoinColumn(name = "utilisateur_id"),
         inverseJoinColumns = @JoinColumn(name = "theme_id")
     )

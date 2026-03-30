@@ -9,9 +9,11 @@ import java.util.List;
 @Data
 public class ArticleDto {
 
+    private Long id;
     private String titre;
     private String contenu;
     private String auteur;
     private Date datePublication;
-    private List<Commentaire> commentaires;
+    private List<CommentaireDto> commentaires;
+    private ThemeDto themeDtos;
 }

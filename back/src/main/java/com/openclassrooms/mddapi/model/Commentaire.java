@@ -1,9 +1,6 @@
 package com.openclassrooms.mddapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -21,5 +18,7 @@ public class Commentaire {
 
     private String auteur;
     private String contenu;
+
+    @Column(name = "date_publication")
     private Date datePublication;
 }

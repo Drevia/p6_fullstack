@@ -17,9 +17,15 @@ public class Article {
     private String titre;
     private String contenu;
     private String auteur;
+
+    @Column(name = "date_publication")
     private Date datePublication;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "article_id")
     private List<Commentaire> commentaires;
+
+    @ManyToOne
+    @JoinColumn(name = "theme_id")
+    private Themes theme;
 }

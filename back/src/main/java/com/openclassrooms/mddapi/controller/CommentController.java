@@ -1,20 +1,27 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.CommentaireDto;
+import com.openclassrooms.mddapi.service.CommentService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class CommentController {
 
-    public ResponseEntity<?> getComments() {
-        // Logique pour récupérer les commentaires d'un article
-        return ResponseEntity.ok("Liste des commentaires de l'article");
+    @Autowired
+    private CommentService commentService;
+
+    @GetMapping("/articles/{articlesId}/comments")
+    public ResponseEntity<?> getComments(@PathVariable Long articlesId) {
+        return ResponseEntity.ok(commentService.getCommentsByArticle(articlesId));
     }
 
-    public ResponseEntity<?> addComment() {
-        // Logique pour ajouter un commentaire à un article
-        return ResponseEntity.ok("Commentaire ajouté");
+    @PostMapping("/articles/{articleId}/comments")
+    public ResponseEntity<?> addComment(@PathVariable Long articleId, @RequestBody CommentaireDto commentaireDto) {
+        return ResponseEntity.ok(commentService.addComment(articleId, commentaireDto));
     }
 }
