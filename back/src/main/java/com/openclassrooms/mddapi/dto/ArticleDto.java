@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.openclassrooms.mddapi.model.Commentaire;
 import lombok.Data;
 

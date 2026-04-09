@@ -34,4 +34,11 @@ public class UserService {
         utilisateur.setEmail(userDto.getEmail());
         return userMapper.toDto(userRepository.save(utilisateur));
     }
+
+    public UserDto updateSubscriptions(String email, UserDto userDto) {
+        Utilisateur utilisateur = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+        utilisateur.setAbonnements(userDto.getAbonnements());
+        return userMapper.toDto(userRepository.save(utilisateur));
+    }
 }
