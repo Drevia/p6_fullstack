@@ -7,6 +7,6 @@ export interface ArticleDetailDto {
   contenu: string;
   auteur: string;
   datePublication: Date;
-  theme: ThemesDto;
+  themeDtos: ThemesDto;
   commentaires: CommentaireDto[];
 }

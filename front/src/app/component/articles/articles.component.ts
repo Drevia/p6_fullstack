@@ -23,9 +23,9 @@ export class ArticlesComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.articleService.getAllArticles().subscribe({
+        this.articleService.getFeed().subscribe({
             next: (articles) => {
-            console.log(articles);
+            console.log("articles trouves:",articles);
             this.articles = articles;
         },
         error: (err) => console.error('Erreur chargement articles', err)
@@ -35,8 +35,8 @@ export class ArticlesComponent implements OnInit {
     public toggleSort(): void {
         this.sortAsc = !this.sortAsc;
         this.articles.sort((a, b) => {
-            const dateA = new Date(a.date).getTime();
-            const dateB = new Date(b.date).getTime();
+            const dateA = new Date(a.datePublication).getTime();
+            const dateB = new Date(b.datePublication).getTime();
             return this.sortAsc ? dateA - dateB : dateB - dateA;
         });
     }

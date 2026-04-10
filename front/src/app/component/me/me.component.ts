@@ -7,6 +7,7 @@ import { ThemesService } from "src/app/services/themes.service";
 import { SessionService } from "src/app/services/session.services";
 import { UserService } from "src/app/services/user.service";
 import { UserDto } from "src/app/dto/user.dto";
+import { UpdateProfilRequest } from "src/app/interfaces/update-profil-request.interface";
 
 @Component({
     selector: "app-me",
@@ -56,17 +57,20 @@ export class MeComponent implements OnInit {
     this.onError = false;
     this.onSuccess = false;
 
-    const userDto = this.form.value as UserDto;
-    this.userService.updateProfil(userDto).subscribe({
-      next: () => {
-        this.onSuccess = true;
-      },
-      error: (err) => {
-        this.onError = true;
-        console.error('Erreur mise à jour profil', err);
-      }
+    const request: UpdateProfilRequest = {
+      username: this.form.value.username!,
+      email: this.form.value.email!,
+    };
+
+    if (this.form.value.password) {
+      request.password = this.form.value.password;
+    }
+
+    this.userService.updateProfil(request).subscribe({
+      next: () => this.onSuccess = true,
+      error: () => this.onError = true
     });
-  }
+}
 
   public unsubscribe(themeId: number): void {
     this.themesService.unsubscribe(themeId).subscribe({

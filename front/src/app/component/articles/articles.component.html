@@ -12,7 +12,7 @@
         <div class="article-card" (click)="goToArticle(article.id)">
           <h2 class="article-title">{{ article.titre }}</h2>
           <div class="article-meta">
-            <span>{{ article.date | date:'dd/MM/yyyy' }}</span>
+            <span>{{ article.datePublication | date:'dd/MM/yyyy' }}</span>
             <span>{{ article.auteur }}</span>
           </div>
           <p class="article-excerpt">{{ article.contenu }}</p>

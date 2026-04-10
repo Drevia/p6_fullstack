@@ -30,7 +30,10 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.articlesService.getArticle(id).subscribe({
-      next: (article) => this.article = article,
+      next: (article) => {
+        console.log('Article chargé', article);
+        this.article = article;
+      },
       error: (err) => console.error('Erreur chargement article', err)
     });
   }
@@ -43,7 +46,6 @@ export class ArticleDetailComponent implements OnInit {
     if (!this.newComment.trim() || !this.article) return;
 
     const commentaire: CommentaireDto = {
-      auteur: this.sessionService.sessionInformation?.username ?? '',
       contenu: this.newComment.trim()
     };
 

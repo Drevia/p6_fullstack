@@ -100,7 +100,6 @@ $text: #333;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s ease;
 
   &:hover:not(:disabled) {
     background: darken($primary, 10%);
@@ -109,5 +108,50 @@ $text: #333;
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+}
+
+.mobile-logo {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .header {
+    display: none;
+  }
+
+  .login-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .back-btn {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .mobile-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .login-form {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .btn-submit {
+    width: 100%;
   }
 }

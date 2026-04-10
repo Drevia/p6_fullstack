@@ -11,7 +11,7 @@
       <div class="article-meta">
         <span>{{ article.datePublication | date:'dd/MM/yyyy' }}</span>
         <span>{{ article.auteur }}</span>
-        <span>{{ article.theme?.titre }}</span>
+        <span>{{ article.themeDtos.titre }}</span>
       </div>
 
       <p class="article-content">{{ article.contenu }}</p>

@@ -3,5 +3,5 @@ export interface ArticleDto {
     titre: string;
     contenu: string;
     auteur: string;
-    date: Date;
+    datePublication: Date;
 }

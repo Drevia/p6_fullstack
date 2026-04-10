@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../environment/environment";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { ArticleDto } from "../dto/articles.dto";
 import { ArticleDetailDto } from "../dto/articleDetailDto";
 import { CommentaireDto } from "../dto/commentaire.dto";
@@ -16,13 +16,32 @@ export class ArticlesServices {
 
     constructor(private httpClient: HttpClient) {}
 
-    public getAllArticles(): Observable<ArticleDto[]> {
-    return this.httpClient.get<ArticleDto[]>(this.pathService);
+  public getAllArticles(): Observable<ArticleDto[]> {
+    return this.httpClient.get<ArticleDto[]>(this.pathService).pipe(
+      map(articles => articles.map(article =>({
+        ...article,
+        datePublication: new Date(article.datePublication)
+      })))
+    );
   }
 
   public getArticle(id: number): Observable<ArticleDetailDto> {
-    return this.httpClient.get<ArticleDetailDto>(`${this.pathService}/${id}`);
+    return this.httpClient.get<ArticleDetailDto>(`${this.pathService}/${id}`).pipe(
+      map(article => ({
+        ...article,
+        datePublication: new Date(article.datePublication)
+      }))
+    );
   }
+
+  public getFeed(): Observable<ArticleDto[]> {
+  return this.httpClient.get<ArticleDto[]>(`${this.pathService}/feed`).pipe(
+      map(articles => articles.map(article =>({
+        ...article,
+        datePublication: new Date(article.datePublication)
+      })))
+    );;
+}
 
   public createArticle(article: ArticleRequest): Observable<ArticleDetailDto> {
     return this.httpClient.post<ArticleDetailDto>(this.pathService, article);

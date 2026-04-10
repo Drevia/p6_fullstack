@@ -3,6 +3,7 @@ import { environment } from "../environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { UserDto } from "../dto/user.dto";
+import { UpdateProfilRequest } from "../interfaces/update-profil-request.interface";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -15,8 +16,8 @@ export class UserService {
         return this.http.get<UserDto>(`${this.pathService}/me`);
     }
 
-    public updateProfil(userDto: UserDto): Observable<UserDto> {
-        return this.http.put<UserDto>(`${this.pathService}/me`, userDto);
+    public updateProfil(request: UpdateProfilRequest): Observable<UserDto> {
+        return this.http.put<UserDto>(`${this.pathService}/me`, request);
     }
 
 

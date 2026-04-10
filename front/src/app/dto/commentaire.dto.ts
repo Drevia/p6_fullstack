@@ -1,5 +1,5 @@
 export interface CommentaireDto {
-    auteur: string;
+    auteur?: string;
     contenu: string;
     datePublication?: Date;
 }

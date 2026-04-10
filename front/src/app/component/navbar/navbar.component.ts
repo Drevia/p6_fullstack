@@ -12,6 +12,8 @@ import { SessionService } from 'src/app/services/session.services';
 })
 export class NavbarComponent {
 
+  menuOpen = false;
+
   constructor(
     private router: Router,
     private sessionService: SessionService
@@ -20,5 +22,13 @@ export class NavbarComponent {
   public logout(): void {
     this.sessionService.logOut();
     this.router.navigate(['/home']);
+  }
+
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu(): void {
+    this.menuOpen = false;
   }
 }

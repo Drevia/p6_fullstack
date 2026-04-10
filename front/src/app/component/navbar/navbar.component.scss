@@ -1,6 +1,4 @@
-$primary: #7C5CBF;
-$border: #ccc;
-$text: #333;
+$primary: #7C5CBF; $border: #ccc; $text: #333;
 
 .navbar {
   display: flex;
@@ -9,51 +7,131 @@ $text: #333;
   padding: 0.75rem 1.5rem;
   border-bottom: 1px solid $border;
   background: #fff;
+  position: relative;
+
+  .navbar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
   .logo {
-    width: 80px;
-    height: auto;
+    width: 150px;
     cursor: pointer;
   }
 
+  .burger {
+    display: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
   .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0;
+
+  a {
+    text-decoration: none;
+    color: $text;
+    font-size: 1rem;
+
+    &.active {
+      font-weight: 600;
+      color: $primary;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .logout {
+    color: $primary;
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+  .profile-icon {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: center;
+    transition: transform 0.2s ease;
 
-    .logout {
-      color: $primary;
-      font-size: 0.95rem;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    svg {
+      stroke: $primary;
+      stroke-width: 1.5;
+      fill: none;
     }
 
-    a {
-      text-decoration: none;
-      color: $text;
-      font-size: 1rem;
-
-      &.active {
-        font-weight: 600;
-        color: $primary;
-      }
-
-      &:hover {
-        color: $primary;
-      }
+    &:hover {
+      transform: scale(1.1);
     }
+  }
+}
 
-    .profile-icon {
-      color: $text;
-      cursor: pointer;
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    padding: 0;
+    align-items: stretch;
+
+    .navbar-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid $border;
+      z-index: 1001;
+      gap: auto;
+    }
 
-      &:hover {
-        color: $primary;
+    .logo {
+      width: 75px;
+    }
+
+    .burger {
+      display: block;
+      z-index: 1001;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 50%;
+      height: 100vh;
+      background: #fff;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: flex-end;
+      justify-content: flex-start;
+
+      padding: 1.5rem;
+      padding-top: 4rem;
+
+      gap: 1.5rem;
+
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+      z-index: 1000;
+
+      &.open {
+        right: 0;
       }
     }
   }
