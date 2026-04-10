@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.UserDto;
+import com.openclassrooms.mddapi.payload.request.UpdateProfilRequest;
 import com.openclassrooms.mddapi.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class UserController {
     }
 
     @PutMapping("/user/me")
-    public ResponseEntity<?> updateProfil(Authentication authentication, @RequestBody UserDto userDto) {
+    public ResponseEntity<?> updateProfil(Authentication authentication, @RequestBody UpdateProfilRequest request) {
         String email = authentication.getName();
-        return ResponseEntity.ok(userService.updateProfil(email, userDto));
+        return ResponseEntity.ok(userService.updateProfil(email, request));
     }
 }

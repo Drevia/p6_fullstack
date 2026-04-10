@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.dto.ArticleDto;
 import com.openclassrooms.mddapi.dto.CommentaireDto;
+import com.openclassrooms.mddapi.dto.UserDto;
 import com.openclassrooms.mddapi.mapper.CommentaireMapper;
 import com.openclassrooms.mddapi.model.Article;
 import com.openclassrooms.mddapi.model.Commentaire;
@@ -30,16 +31,22 @@ public class CommentService {
     @Autowired
     private ArticlesRepository articlesRepository;
 
+    @Autowired
+    private UserService userService;
+
     public List<CommentaireDto> getCommentsByArticle(Long articleId) {
         ArticleDto articleDto = articlesService.getArticle(articleId);
         return articleDto.getCommentaires();
     }
 
-    public CommentaireDto addComment(Long articleId, CommentaireDto commentaireDto) {
+    public CommentaireDto addComment(Long articleId, CommentaireDto commentaireDto, String userEmail) {
         Article article = articlesRepository.findById(articleId)
                 .orElseThrow(() -> new RuntimeException("Article not found with id: " + articleId));
 
-        Commentaire commentaire = commentaireMapper.toEntity(commentaireDto);
+
+        UserDto userDto = userService.getProfil(userEmail);
+
+        Commentaire commentaire = commentaireMapper.toEntity(commentaireDto, userDto.getUsername());
         commentaire.setDatePublication(new Date());
         article.getCommentaires().add(commentaire);
         articlesRepository.save(article);

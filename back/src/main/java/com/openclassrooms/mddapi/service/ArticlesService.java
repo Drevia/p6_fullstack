@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.dto.UserDto;
 import com.openclassrooms.mddapi.mapper.ArticleMapper;
 import com.openclassrooms.mddapi.model.Article;
 import com.openclassrooms.mddapi.model.Themes;
+import com.openclassrooms.mddapi.model.Utilisateur;
 import com.openclassrooms.mddapi.payload.request.ArticleRequest;
 import com.openclassrooms.mddapi.repository.ArticlesRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +53,16 @@ public class ArticlesService {
         article.setTheme(theme);
 
         return articleMapper.toArticleDto(articleRepository.save(article));
+    }
+
+    public List<ArticleDto> getFeed(String email) {
+        UserDto user = userService.getProfil(email);
+
+        List<Themes> abonnements = user.getAbonnements();
+
+        return articleRepository.findByThemeInOrderByDatePublicationDesc(abonnements)
+                .stream()
+                .map(articleMapper::toArticleDto)
+                .collect(Collectors.toList());
     }
 }

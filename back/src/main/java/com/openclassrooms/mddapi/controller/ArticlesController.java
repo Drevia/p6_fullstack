@@ -27,9 +27,17 @@ public class ArticlesController {
         return ResponseEntity.ok(articlesService.getArticle(id));
     }
 
+    @GetMapping("/articles/feed")
+    public ResponseEntity<?> getFeed(Authentication authentication) {
+        String email = authentication.getName();
+        return ResponseEntity.ok(articlesService.getFeed(email));
+    }
+
     @PostMapping("/articles")
     public ResponseEntity<?> createArticle(Authentication authentication, @RequestBody ArticleRequest articleRequest) {
         String userEmail = authentication.getName();
         return ResponseEntity.ok(articlesService.createArticle(articleRequest, userEmail));
     }
+
+
 }
