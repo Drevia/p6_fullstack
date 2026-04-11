@@ -15,15 +15,13 @@ export class RegisterComponent{
     public onError = false;
 
     public form = this.fb.group({
-        username: ['', Validators.required, Validators.minLength(3), Validators.maxLength(20)],
-        email: ['', Validators.required, Validators.email],
-        password: ['', 
-            [
-                Validators.required,
-                Validators.minLength(8),
-                Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
-            ]
-        ]
+        username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+        ]]
     });
 
     constructor(
@@ -33,9 +31,13 @@ export class RegisterComponent{
     ) {}
 
     public submit(): void {
+        if(this.form.invalid) {
+            return;
+        }
+
         const registerRequest = this.form.value as RegisterRequest;
         this.authService.register(registerRequest).subscribe({
-            next: () => this.router.navigate(['/login']),
+            next: () => this.router.navigate(['/auth/login']),
             error: () => this.onError = true,
         })
     }
