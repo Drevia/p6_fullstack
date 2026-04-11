@@ -37,7 +37,7 @@ export class RegisterComponent{
 
         const registerRequest = this.form.value as RegisterRequest;
         this.authService.register(registerRequest).subscribe({
-            next: () => this.router.navigate(['/auth/login']),
+            next: () => this.router.navigate(['/login']),
             error: () => this.onError = true,
         })
     }
